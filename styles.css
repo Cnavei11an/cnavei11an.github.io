@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+}
+
+/* Estilo para el título principal */
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+/* Estilo para la imagen de perfil */
+.profile-img {
+    width: 200px;  /* Ajusta el ancho según lo que necesites */
+    height: 200px; /* Ajusta la altura según lo que necesites */
+    object-fit: cover;  /* Esto asegura que la imagen se recorte adecuadamente para llenar el espacio */
+}
+
+/* Estilo para la lista de habilidades */
+ul.skills {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.skills li {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Estilo para los elementos de habilidad */
+.skill {
+    font-weight: bold;
+}
+
+/* Estilos para el input y el botón */
+input[type="text"] {
+    padding: 10px;
+    margin-top: 10px;
+    width: 200px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilo para la sección modificable */
+.dynamic-section {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #34495e;
+}

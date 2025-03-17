@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Cristobal Naveillan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Usuario: Cristobal Naveillan</h1>
+    <h2>Major: Ingeniería Industrial mención Analítica de Datos</h2>
+    <h2>Matriculado año 2021</h2>
+
+    <!-- Imagen de perfil -->
+    <img src="imagen.jpeg" alt="Cristobal Naveillan" class="profile-img">
+
+    <h3>Puedes encontrarme en GitHub:</h3>
+    <a href="https://github.com/Cnavei11an" target="_blank">Usuario GitHub</a>
+
+    <p>
+        Nací el 12 de julio del 2001, estudié en el Colegio Cumbres, luego ingresé a estudiar Ingeniería Civil en la Universidad de los Andes.
+        Tengo 4 hermanos y tres perros. Estado civil: soltero. <br> 
+        A continuación, les mostraré qué tanto sé de cada lenguaje de programación:
+    </p>
+
+    <ul class="skills">
+        <li><span class="skill">Python</span> <span>Experto</span></li>
+        <li><span class="skill">JavaScript</span> <span>Básico</span></li>
+        <li><span class="skill">HTML/CSS</span> <span>Avanzado</span></li>
+        <li><span class="skill">Git</span> <span>Nulo</span></li>
+        <li><span class="skill">Excel</span> <span>Avanzado</span></li>
+        <li><span class="skill">SQL</span> <span>Avanzado</span></li>
+        <li><span class="skill">Ruby</span> <span>Básico</span></li>
+        <li><span class="skill">English</span> <span>Avanzado</span></li>
+        <li><span class="skill">Spanish</span> <span>Nativo</span></li>
+    </ul>
+
+    <!-- Sección modificable -->
+    <div class="dynamic-section" id="dynamicText">
+        Escriba algo para cambiar este texto
+    </div>
+
+    <!-- Input y botón -->
+    <input type="text" id="inputText" placeholder="Escribe algo aquí...">
+    <button onclick="changeText()">Cambiar Texto</button>
+
+    <script>
+        function changeText() {
+            var newText = document.getElementById("inputText").value;
+            if (newText.trim() !== "") {
+                document.getElementById("dynamicText").innerText = newText;
+            }
+        }
+    </script>
+
+</body>
+</html>
