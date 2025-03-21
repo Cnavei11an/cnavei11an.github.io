@@ -1,58 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Cristobal Naveillan</title>
+    <!-- Link a Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ajustar tamaño de la imagen del perfil */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        /* Estilo para las cajas de habilidades */
+        .skill-box {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        /* Estilo para la sección de noticias */
+        .news-card {
+            margin-bottom: 20px;
+        }
+        .news-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Usuario: Cristobal Naveillan</h1>
-    <h2>Major: Ingeniería Industrial mención Analítica de Datos</h2>
-    <h2>Matriculado año 2021</h2>
+    <div class="container profile-container mt-5">
+        <!-- Información Personal -->
+        <div class="text-center">
+            <h3>Información Personal</h3>
+            <p><strong>Nombre:</strong> Cristobal Naveillan</p>
+            <p><strong>Matriculado:</strong> 2021</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/Cnavei11an" class="btn btn-primary btn-sm" target="_blank">Perfil</a></p>
+        </div>
 
-    <!-- Imagen de perfil -->
-    <img src="imagen.jpeg" alt="Cristobal Naveillan" class="profile-img">
+        <!-- Imagen del perfil -->
+        <div class="text-center">
+            <img src="imagen.jpeg" alt="Cristobal Naveillan" class="profile-img">
+        </div>
 
-    <h3>Puedes encontrarme en GitHub:</h3>
-    <a href="https://github.com/Cnavei11an" target="_blank">Usuario GitHub</a>
+        <!-- Habilidades -->
+        <div>
+            <h3 class="text-center">Habilidades</h3>
+            <div class="row">
+                <div class="col-md-4 col-12">
+                    <div class="skill-box">Python <br> <span>Experto</span></div>
+                    <div class="skill-box">JavaScript <br> <span>Básico</span></div>
+                    <div class="skill-box">HTML/CSS <br> <span>Avanzado</span></div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="skill-box">Git <br> <span>Nulo</span></div>
+                    <div class="skill-box">Excel <br> <span>Avanzado</span></div>
+                    <div class="skill-box">SQL <br> <span>Avanzado</span></div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="skill-box">Ruby <br> <span>Básico</span></div>
+                    <div class="skill-box">English <br> <span>Avanzado</span></div>
+                    <div class="skill-box">Spanish <br> <span>Nativo</span></div>
+                </div>
+            </div>
+        </div>
 
-    <p>
-        Nací el 12 de julio del 2001, estudié en el Colegio Cumbres, luego ingresé a estudiar Ingeniería Civil en la Universidad de los Andes.
-        Tengo 4 hermanos y tres perros. Estado civil: soltero. <br> 
-        A continuación, les mostraré qué tanto sé de cada lenguaje de programación:
-    </p>
+        <!-- Botón para cargar las noticias -->
+        <div class="text-center mt-5">
+            <button id="load-news-btn" class="btn btn-success">Cargar Noticias</button>
+        </div>
 
-    <ul class="skills">
-        <li><span class="skill">Python</span> <span>Experto</span></li>
-        <li><span class="skill">JavaScript</span> <span>Básico</span></li>
-        <li><span class="skill">HTML/CSS</span> <span>Avanzado</span></li>
-        <li><span class="skill">Git</span> <span>Nulo</span></li>
-        <li><span class="skill">Excel</span> <span>Avanzado</span></li>
-        <li><span class="skill">SQL</span> <span>Avanzado</span></li>
-        <li><span class="skill">Ruby</span> <span>Básico</span></li>
-        <li><span class="skill">English</span> <span>Avanzado</span></li>
-        <li><span class="skill">Spanish</span> <span>Nativo</span></li>
-    </ul>
-
-    <!-- Sección modificable -->
-    <div class="dynamic-section" id="dynamicText">
-        Escriba algo para cambiar este texto
+        <!-- Sección para mostrar las noticias -->
+        <div id="news-articles" class="mt-5 row">
+            <!-- Las noticias se cargarán aquí -->
+        </div>
     </div>
 
-    <!-- Input y botón -->
-    <input type="text" id="inputText" placeholder="Escribe algo aquí...">
-    <button onclick="changeText()">Cambiar Texto</button>
-
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function changeText() {
-            var newText = document.getElementById("inputText").value;
-            if (newText.trim() !== "") {
-                document.getElementById("dynamicText").innerText = newText;
-            }
-        }
-    </script>
+        $(document).ready(function() {
+            // URL de la API de noticias
+            const apiUrl = 'https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=31094695f20d41fcb16a84829bfd3f32';
 
+            // Función para cargar las noticias
+            function cargarNoticias() {
+                $.getJSON(apiUrl, function(data) {
+                    const noticias = data.articles;
+                    let noticiasHtml = '<div class="row">';
+                    
+                    // Iterar sobre las noticias y agregar a la página
+                    noticias.forEach(function(noticia) {
+                        noticiasHtml += `
+                            <div class="col-md-4">
+                                <div class="card news-card">
+                                    <img src="${noticia.urlToImage}" class="card-img-top" alt="${noticia.title}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${noticia.title}</h5>
+                                        <p class="card-text">${noticia.description}</p>
+                                        <a href="${noticia.url}" class="btn btn-primary" target="_blank">Leer más</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    noticiasHtml += '</div>';
+                    $('#news-articles').html(noticiasHtml);
+                });
+            }
+
+            // Llamar a la función para cargar las noticias al hacer clic en el botón
+            $('#load-news-btn').click(function() {
+                cargarNoticias();
+            });
+        });
+    </script>
 </body>
 </html>
